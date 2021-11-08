@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
+use App\Models\Employeejob;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -12,8 +12,8 @@ class DashboardController extends Controller
     //
     public function jobManagement(){
         
-        $job = Job::get();
-        $job = Job::paginate(10);
+        $job = Employeejob::get();
+        $job = Employeejob::paginate(10);
         // $job = Job::paginate(10);
 
         return view('admin.job',[
@@ -23,7 +23,7 @@ class DashboardController extends Controller
     public function jobEdit(Request $request){
         // return $request->id; //to get the parameter
         $status="";
-        $jobs = Job::where("id",$request->id)->first();
+        $jobs = Employeejob::where("id",$request->id)->first();
         // return $jobs;
         // return $request->title;
         if(isset($request->title)){
@@ -46,7 +46,7 @@ class DashboardController extends Controller
     public function delete(Request $request){
         // return $request->id; //to get the parameter
         
-        $jobs = Job::where("id",$request->id)->first();
+        $jobs = Employeejob::where("id",$request->id)->first();
         $jobs->delete();
         return redirect('admin/dashboard');
     }

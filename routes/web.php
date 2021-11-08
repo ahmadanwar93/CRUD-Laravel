@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,3 +104,38 @@ Route::middleware(['auth'])->group(function () {
     ->name('admin.userDelete');
     
 });
+
+Route::get('queue-email', function(){
+
+    $email_list['email'] = 'ahmadfikri.anwarfadzil@gmail.com';   
+    // $user = User::whereId(2)->first();
+    // $email_list['user'] = $user;
+
+    $user = User::whereId(1)->first();
+    $email_list['user'] = $user;
+
+    dispatch(new \App\Jobs\QueueJob($email_list));
+    
+    // return response()->json($email_list['email']);
+    dd('Send Email Successfully');
+});
+
+Route::get('create-user', function(){
+    $user = new User();
+    // $email_list['email'] = 'ahmadfikri.anwarfadzil@gmail.com';
+    $user->name = "azizi345";
+    $user->email = 'azizi345@gmail.com';
+    $user -> password = bcrypt('password');
+    $user->save();
+
+    
+    
+    // $user = User::whereId(2)->first();
+    // $email_list['user'] = $user;
+
+    // dispatch(new \App\Jobs\QueueJob($email_list));
+    
+    return response()->json('user_created');
+    // dd('Send Email Successfully');
+});
+

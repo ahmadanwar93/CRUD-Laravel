@@ -27,4 +27,5 @@ Route::group([
     'middleware' => 'auth.jwt', //custom middleware
 ], function(){
     Route::post('/dashboard', [ApiController::class, 'dashboard']);
+    Route::post('/users', [ApiController::class, 'users']);
 });

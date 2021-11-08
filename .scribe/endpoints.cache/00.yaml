@@ -32,7 +32,7 @@ endpoints:
       - POST
     uri: api/login
     metadata:
-      title: 'Get a JWT via given credentials.'
+      title: Login
       description: ''
       authenticated: false
     headers:
@@ -45,13 +45,13 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: djacobs@example.net
+        example: dane72@example.org
         type: string
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: zee
+        example: h
         type: string
     responses: []
     responseFields: []
@@ -60,14 +60,45 @@ endpoints:
       - POST
     uri: api/dashboard
     metadata:
-      title: ''
+      title: Dashboard
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: 'scenario = "invalid token"'
+        headers: []
+        description: '401'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/users
+    metadata:
+      title: |-
+        User API
+        Get all the user by pagination
+      description: ''
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      page:
+        name: page
+        description: 'Page number for pagination.'
+        required: false
+        example: 1
+        type: integer
     responses: []
     responseFields: []

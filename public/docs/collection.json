@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "4fd84eb0-ea1d-4504-b12d-6c68d306a159",
+        "_postman_id": "4c48797f-9ef1-44d9-85d2-38c2a9d7a23d",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -69,7 +69,7 @@
                     ]
                 },
                 {
-                    "name": "Get a JWT via given credentials.",
+                    "name": "Login",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -91,7 +91,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"djacobs@example.net\",\"password\":\"zee\"}"
+                            "raw": "{\"email\":\"dane72@example.org\",\"password\":\"h\"}"
                         },
                         "description": "",
                         "auth": {
@@ -101,7 +101,7 @@
                     "response": []
                 },
                 {
-                    "name": "api\/dashboard",
+                    "name": "Dashboard",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -119,13 +119,54 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "scenario = \"invalid token\"",
+                            "name": ""
                         }
+                    ]
+                },
+                {
+                    "name": "User API\nGet all the user by pagination",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"page\":1}"
+                        },
+                        "description": ""
                     },
                     "response": []
                 }

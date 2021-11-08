@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use JWTAuth;
-use App\Models\Job;
+use App\Models\Employeejob;
 use App\Models\User;
 use App\Models\Department;
 
@@ -49,7 +49,7 @@ class AdminController extends Controller
         // dia punya
         $jwt_token = session('jwt_token');
         $user_total =User::get()->count();
-        $jobCount = Job::get()->count(); 
+        $jobCount = Employeejob::get()->count(); 
         $departmentCount = Department::get()->count();
         // compact('jwt_token')
         // ["jwt_token"=>$jwt_token]
